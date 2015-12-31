@@ -1,5 +1,4 @@
-draw.pv.ctt <-
-function( y , dat.scale = NULL , x=NULL , samp.pars = TRUE , alpha = NULL ,
+draw.pv.ctt <- function( y , dat.scale = NULL , x=NULL , samp.pars = TRUE , alpha = NULL ,
                             sig.e = NULL , var.e=NULL , true.var = NULL ){ 
     #---------------------------------------------------------------------------##
     # INPUT:                                                                    ##
@@ -78,7 +77,7 @@ function( y , dat.scale = NULL , x=NULL , samp.pars = TRUE , alpha = NULL ,
     # draw regression parameter
     if ( samp.pars ){ 
         v <- vcov(mod)	
-        beta.star <- coef(mod) + mvrnorm( 1 , mu = rep(0, nrow(v) ) , Sigma = v )
+        beta.star <- coef(mod) + MASS::mvrnorm( 1 , mu = rep(0, nrow(v) ) , Sigma = v )
         # draw new fitted y
 		if ( x0ind ){
 			yfitted <- cbind(1,x0) %*% beta.star

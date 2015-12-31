@@ -13,7 +13,8 @@ or matrices.
 }
 
 \usage{
-save.data( data , filename , type="Rdata" , path=getwd() , ...)
+save.data( data, filename, type="Rdata", path=getwd(), row.names=FALSE, na=NULL, 
+      suffix = NULL , suffix_space = "__" , ...)
 }
 
 
@@ -25,22 +26,30 @@ Name of data file
 }
   \item{type}{
 The type of file in which the data frame or matrix should be loaded.
-This can be \code{Rdata} (for \R binary format, using \code{\link{save}}), 
-\code{csv} (using \code{\link{write.csv2}}), \code{csv} (using \code{\link{write.csv}}),
-\code{table} (using \code{\link{write.table}}) or 
-\code{sav} (using \code{\link[miceadds:write.pspp]{write.pspp}} (\pkg{miceadds})).	  
+This can be \code{Rdata} (for \R binary format, using
+\code{\link[base:save]{base::save}}, 
+\code{csv} (using \code{\link[utils:write.csv2]{utils::write.csv2}}), 
+\code{csv} (using \code{\link[utils:write.csv]{utils::write.csv}}),
+\code{table} (using \code{\link[utils:write.table]{utils::write.table}}) or 
+\code{sav} (using \code{\link[sjmisc:write_spss]{sjmisc::write_spss}}).	  
   	  }
 \item{path}{Directory from which the dataset should be loaded}
+\item{row.names}{Optional logical indicating whether row names
+should be included in saved \code{csv} or \code{csv2} files.}
+\item{na}{Missing value handling. The default is \code{""} for \code{type="csv"}
+and \code{type="csv2"} and is \code{"."} for \code{type="table"}.}
+\item{suffix}{Optional suffix in file name.}
+\item{suffix_space}{Optional place holder if a suffix is used.}
 \item{\dots}{Further arguments to be passed to \code{save},
 	\code{write.csv2}, \code{write.csv}, \code{write.table}
-	or \code{write.pspp} (\pkg{miceadds}).
+	or \code{sjmisc::write_spss}.
 }
 }
 
-\details{
-For writing \code{sav} files, an installation of PSPP is necessary.
-See \code{\link{write.pspp}}.
-}
+%\details{
+%For writing \code{sav} files, an installation of PSPP is necessary.
+%See \code{\link{write.pspp}}.
+%}
 
 %\value{
 %%  ~Describe the value returned
@@ -77,21 +86,18 @@ dat <- data.ma01
 pf2 <- "P:/ARb/temp_miceadds"
 
 # save data in Rdata format
-save.data( dat , filename="ma01data.Rdata"  , type="Rdata" , path=pf2)
+save.data( dat , filename="ma01data"  , type="Rdata" , path=pf2)
 
 # save data in table format
-save.data( dat , filename="ma01data.dat"  , type="table" , path=pf2 ,
+save.data( dat , filename="ma01data"  , type="table" , path=pf2 ,
             row.names=FALSE , na =".")
 
 # save data in csv2 format
-save.data( dat , filename="ma01data.csv"  , type="csv2" , path=pf2 ,
+save.data( dat , filename="ma01data"  , type="csv2" , path=pf2 ,
             row.names=FALSE , na ="")
 
 # save data in sav format 
-# - do not forget to specify the PSPP path on your computer
-# - note that an installed PSPP version is necessary (see write.pspp)
-save.data( dat , filename="ma02data"  , type="sav" ,  path=pf2 ,
-             pspp.path = "C:/Program Files (x86)/PSPP/bin/" )
+save.data( dat , filename="ma02data"  , type="sav" ,  path=pf2 )
 }
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the

@@ -1,5 +1,4 @@
-micombine.cor <-
-function (mi.res, variables = 1:(ncol(mi.list[[1]])), subset=1:(nrow(mi.list[[1]])), conf.level = 0.95)
+function (mi.res, variables = 1:(ncol(mi.list[[1]])), subset=1:(nrow(mi.list[[1]])), conf.level = 0.95,method="pearson")
 {
     # INPUT:
     # mi.res    ... MICE object
@@ -24,7 +23,7 @@ function (mi.res, variables = 1:(ncol(mi.list[[1]])), subset=1:(nrow(mi.list[[1]
             jj <- variables[j]
                 if ( i != j){ 
                     # calculate correlation coefficients
-                    cor.ii.jj <- unlist( lapply( mi.list , FUN = function(dat){  cor( dat[ subset, ii] , dat[subset, jj] ) } ) )
+                    cor.ii.jj <- unlist( lapply( mi.list , FUN = function(dat){  cor( dat[ subset, ii] , dat[subset, jj] ),method=method } ) )
                     res.ii.jj <- .sub.micombine.cor( cor.list = cor.ii.jj , N = N , conf.level = conf.level )
                     dfr <- rbind( dfr , c( ii , jj , res.ii.jj ) )
             }   }}}
@@ -45,7 +44,7 @@ function (mi.res, variables = 1:(ncol(mi.list[[1]])), subset=1:(nrow(mi.list[[1]
 .sub.micombine.cor <- function( cor.list , N , conf.level ){
         # convert correlations to Fisher transformed values
         fisher.cor.list <- as.list(1/2*log( ( 1 + cor.list) / ( 1 - cor.list ) ))
-        var.fisher <- as.list( rep( 1/(N-3) , length(cor.list) ) )
+        var.fisher <- as.list( rep( 1/(N-3) , length(cor.list) ) )		
         # combination of point estimators according Rubin's formula
         fisher.cor.combine <- MIcombine( fisher.cor.list , var.fisher)		
         zr <- coef(fisher.cor.combine)
@@ -74,7 +73,7 @@ function (mi.res, variables = 1:(ncol(mi.list[[1]])), subset=1:(nrow(mi.list[[1]
 .milist <- function( mi.res ){ 
     mi.list <- NULL
     M <- mi.res$m   # extrahiere Anzahl der Imputationen
-    for (ii in 1:M){ # M Einträge der Liste für M imputierte Datensätze anlegen
+    for (ii in 1:M){ 
         mi.list[[ii]] <- complete( mi.res , action= ii )
         }
     return(mi.list)

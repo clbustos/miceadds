@@ -60,11 +60,11 @@ Alexander Robitzsch
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
 \seealso{
-Principal component analysis in \code{stats}: 
-\code{\link[stats:princomp]{princomp}}
+Principal component analysis in \pkg{stats}: 
+\code{\link[stats:princomp]{stats::princomp}}
 
 For calculating first eigenvalues of a symmetric matrix see also
-\code{\link[sirt:eigenvalues.sirt]{eigenvalues.sirt}} in the
+\code{\link[sirt:eigenvalues.sirt]{sirt::eigenvalues.sirt}} in the
 \pkg{sirt} package.
 }
 
@@ -84,19 +84,19 @@ imp <- mice( dat , m=1 , maxit=10 )
 
 # apply PCA
 pca.imp <- pca.covridge( complete(imp) )
-##   > pca.imp$sdev
-##      Comp.1    Comp.2    Comp.3    Comp.4    Comp.5    Comp.6    Comp.7 
-##   3.0370905 2.3950176 2.2106816 2.0661971 1.8252900 1.7009921 1.6379599 
+  ##   > pca.imp$sdev
+  ##      Comp.1    Comp.2    Comp.3    Comp.4    Comp.5    Comp.6    Comp.7 
+  ##   3.0370905 2.3950176 2.2106816 2.0661971 1.8252900 1.7009921 1.6379599 
 
 # compare results with princomp
 pca2.imp <- princomp( complete(imp) )
-##   > pca2.imp
-##   Call:
-##   princomp(x = complete(imp))
-##   
-##   Standard deviations:
-##      Comp.1    Comp.2    Comp.3    Comp.4    Comp.5    Comp.6    Comp.7 
-##   3.0316816 2.3907523 2.2067445 2.0625173 1.8220392 1.6979627 1.6350428 
+  ##   > pca2.imp
+  ##   Call:
+  ##   princomp(x = complete(imp))
+  ##   
+  ##   Standard deviations:
+  ##      Comp.1    Comp.2    Comp.3    Comp.4    Comp.5    Comp.6    Comp.7 
+  ##   3.0316816 2.3907523 2.2067445 2.0625173 1.8220392 1.6979627 1.6350428 
 }
 }
 

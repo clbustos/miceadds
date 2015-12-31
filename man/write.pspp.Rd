@@ -63,7 +63,10 @@ The code is adapted from
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
 \seealso{
-See also \code{write.foreign} in the \pkg{foreign} package.
+See also \code{\link[foreign:write.foreign]{foreign::write.foreign}}. 
+
+For writing sav files see also \code{\link[haven:write_sav]{haven::write_sav}} 
+and  \code{\link[sjmisc:write_spss]{sjmisc::write_spss}}.
 
 For convenient viewing \emph{sav} files we recommend the freeware
 program \emph{ViewSav}, see \url{http://www.asselberghs.dds.nl/stuff.htm}.
@@ -104,6 +107,16 @@ write.pspp( data , datafile = "example_data1" ,
 # (4b) produce strings instead of factors
 write.pspp( data , datafile = "example_data2" ,
         pspp.path = "C:/Program Files (x86)/PSPP/bin/"  , as.factors=FALSE )
+        
+#****
+# write sav file using the haven package
+library(haven)
+haven::write_sav( data , "example_data1a.sav" )      
+
+#****
+# write sav file using sjmisc package
+data <- sjmisc::set_label( data, attr(data, "variable.labels") )
+sjmisc::write_spss( data , "example_data1b.sav" )
 }
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the

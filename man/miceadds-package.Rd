@@ -3,15 +3,15 @@
 \alias{miceadds}
 \docType{package}
 \title{
-Some additional multiple imputation functions, especially for \pkg{mice} 
+Some Additional Multiple Imputation Functions, Especially for \pkg{mice} 
 }
 \description{
-The package miceadds contains some auxiliary functions for
-multiple imputation which complements existing functionality in R.
-In addition to some utility functions, main features include 
-plausible value imputation, multilevel imputation functions,
-imputation using partial least squares (PLS) for high dimensional 
-predictors and two-way imputation.
+    Contains some auxiliary functions for multiple imputation which 
+    complements existing functionality in \R.
+    In addition to some utility functions, main features include 
+    plausible value imputation, multilevel imputation functions,
+    imputation using partial least squares (PLS) for high dimensional 
+    predictors, nested multiple imputation, and two-way imputation.
 }
 
 \details{
@@ -20,8 +20,8 @@ predictors and two-way imputation.
 \tabular{ll}{
 Package: \tab \pkg{miceadds} \cr
 Type: \tab Package\cr
-Version: \tab 0.14 \cr
-Publication Year: \tab 2014\cr
+Version: \tab 1.5 \cr
+Publication Year: \tab 2015\cr
 License: \tab GPL (>= 2)\cr
 URL: \tab \url{https://sites.google.com/site/alexanderrobitzsch/software} \cr
 }
@@ -31,6 +31,9 @@ URL: \tab \url{https://sites.google.com/site/alexanderrobitzsch/software} \cr
 \item In addition to the usual \code{mice} imputation function which employs
 parallel chains, the function \code{\link{mice.1chain}} does multiple 
 imputation from a single chain. 
+
+\item Nested multiple imputation can be conducted with
+\code{\link{mice.nmi}}.
 
 \item Imputation based on partial least squares regression is implemented
 in \code{\link{mice.impute.2l.pls}}.
@@ -52,10 +55,9 @@ accomplished by two-way imputation (\code{\link{tw.imputation}}).
 }
 \author{
 Alexander Robitzsch \cr 
-Federal Institute for Education Research, Innovation and Development of the 
-Austrian School System (BIFIE Salzburg), Austria
-\cr \cr
-Maintainer: Alexander Robitzsch <a.robitzsch@bifie.at> \cr \cr
+IPN - Leibniz Institute for Science and Mathematics Education
+at Kiel University \cr \cr
+Maintainer: Alexander Robitzsch <robitzsch@ipn.uni-kiel.de> \cr \cr
 URL: \url{https://sites.google.com/site/alexanderrobitzsch/}
 }
 

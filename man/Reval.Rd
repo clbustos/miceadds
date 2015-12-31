@@ -29,7 +29,7 @@ Should the string printed on the console?
 }
 \details{
 The string is evaluated in the parent environment. See 
-\code{\link[base]{eval}} for the definition of environments in \R.
+\code{\link[base:eval]{base::eval}}  for the definition of environments in \R.
 }
 %\value{
 %%  ~Describe the value returned
@@ -62,9 +62,9 @@ Reval <- function( Rstring , print.string=TRUE){
             }
   
 Reval( "a <- 2^3" )
-## a <- 2^3 
+  ## a <- 2^3 
 a
-## [1] 8  
+  ## [1] 8  
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.

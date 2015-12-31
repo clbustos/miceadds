@@ -1,5 +1,4 @@
-latent.regression.em <-
-function( data , X , weights = rep(1,nrow(data)) , 
+latent.regression.em <- function( data , X , weights = rep(1,nrow(data)) , 
                                 beta.init=rep(0,ncol(X)) , sigma.init =1 , 
                                 b = b , a= rep(1 , length(b)) , c= rep(0 , length(b)) , 
                                 max.parchange=.0001 , 
@@ -81,7 +80,7 @@ function( data , X , weights = rep(1,nrow(data)) ,
         mod <- lm( pv ~ 0 + X )
         res <- list( "est.beta" = coef(mod) , "vcov.beta" = vcov(mod) )
         # sample beta parameter
-        res$samp.beta <- mvrnorm( mu = res$est.beta , Sigma = res$vcov.beta )
+        res$samp.beta <- MASS::mvrnorm( mu = res$est.beta , Sigma = res$vcov.beta )
         # residual standard deviation
         n <- nrow(X) ; p <- ncol(X)
         res$est.sigma <- summary(mod)$sigma
@@ -89,7 +88,7 @@ function( data , X , weights = rep(1,nrow(data)) ,
         mod1 <- lm( residuals.mod ~ 0 + Z )
         summary(mod1)
         # sample gamma coefficients for heteroscedasticity
-        samp.gamma <- mvrnorm( mu = coef(mod1) , Sigma = vcov(mod1) )
+        samp.gamma <- MASS::mvrnorm( mu = coef(mod1) , Sigma = vcov(mod1) )
         res$fitted.sigma <- sqrt( fitted(mod1) )
         res$lm.latent.regression <- mod
         res$lm.residualsd <- mod1
